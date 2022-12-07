@@ -1,77 +1,95 @@
-import React from "react";
-import styled from "styled-components";
-import { About } from "../styles";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { About } from '../styles';
+import Toggle from './Toogle';
+import { AnimateSharedLayout } from 'framer-motion';
+import { UseScroll } from './useScroll';
+import { fade } from '../animation';
 
 const FaqSection = () => {
-    return (
-        <Faq>
-            <h2>Any Questions <span>FAQ</span></h2>
-            <div className="question">
-                <h4>How do i start?</h4>
-                <div className="answer">
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, facilis.</p>
-                </div>
-                <div className="faq-line"></div>
-            </div>
+  const [element, controls] = UseScroll();
+  return (
+    <Faq
+      variants={fade}
+      ref={element}
+      animate={controls}
+      initial="hidden"
+    >
+      <h2>
+        Any Questions <span>FAQ</span>
+      </h2>
+      <AnimateSharedLayout>
+        <Toggle title="How do i start?">
+          <div className="answer">
+            <p>Lorem ipsum dolor sit amet.</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Ab, facilis.
+            </p>
+          </div>
+        </Toggle>
 
-            <div className="question">
-                <h4>Daily schedule?</h4>
-                <div className="answer">
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, facilis.</p>
-                </div>
-                <div className="faq-line"></div>
-            </div>
+        <Toggle title="Daily schedule">
+          <div className="answer">
+            <p>Lorem ipsum dolor sit amet.</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Ab, facilis.
+            </p>
+          </div>
+        </Toggle>
 
-            <div className="question">
-                <h4>Different payment methods</h4>
-                <div className="answer">
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, facilis.</p>
-                </div>
-                <div className="faq-line"></div>
-            </div>
+        <Toggle title="Different payment methods">
+          <div className="answer">
+            <p>Lorem ipsum dolor sit amet.</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Ab, facilis.
+            </p>
+          </div>
+        </Toggle>
 
-            <div className="question">
-                <h4>What porducts do you offer?</h4>
-                <div className="answer">
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, facilis.</p>
-                </div>
-                <div className="faq-line"></div>
-            </div>
-        </Faq>
-    );
+        <Toggle title="What products do you offer?">
+          <div className="answer">
+            <p>Lorem ipsum dolor sit amet.</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Ab, facilis.
+            </p>
+          </div>
+        </Toggle>
+      </AnimateSharedLayout>
+    </Faq>
+  );
 };
 
 const Faq = styled(About)`
+  display: block;
+  span {
     display: block;
-    span {
-        display: block;
-    }
-    h2 {
-        padding-bottom: 2rem;
-        font-weight: lighter;
-    }
-    .faq-line {
-        background: #cccccc;
-        height: 0.2rem;
-        margin: 2rem 0rem;
-        width: 100%
-    }
+  }
+  h2 {
+    padding-bottom: 2rem;
+    font-weight: lighter;
+  }
+  .faq-line {
+    background: #cccccc;
+    height: 0.2rem;
+    margin: 2rem 0rem;
+    width: 100%;
+  }
 
-    .question {
-        padding: 3rem 0rem;
-        cursor: pointer;
-    }
+  .question {
+    padding: 3rem 0rem;
+    cursor: pointer;
+  }
 
-    .answer {
-        padding: 2rem 0rem;
-        p {
-            padding: 1rem 0rem;
-        }
+  .answer {
+    padding: 2rem 0rem;
+    p {
+      padding: 1rem 0rem;
     }
-`
+  }
+`;
 
 export default FaqSection;
